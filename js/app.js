@@ -50,34 +50,30 @@ angular.module( 'engageApp', [
       {"name":"Greater Than Or Equal To"}
     ];
 
-    $scope.statementTelcoData = [
-      {"name":"Customer Number"},
-      {"name":"Customer Gender"},
-      {"name":"Customer City"},
-      {"name":"Customer Type"},
-      {"name":"Manufacturer"},
-      {"name":"Model Number"},
-      {"name":"Plan Name"},
-      {"name":"Plan MinRental"},
-      {"name":"Plan PulseRate(Sec)"},
-      {"name":"Roaming Enbaled"},
-      {"name":"Call Duration"},
-      {"name":"Number of Calls"},
-      {"name":"Total Minutes"},
-      {"name":"Total Roaming Minutes"},
-      {"name":"Total Long Distance Minutes"},
-      {"name":"Total Call Cost"},
-      {"name":"Total Roaming Cost"},
-      {"name":"Total Long Distance Cost"},
-      {"name":"Feature type"},
-      {"name":"Data Pack"},
-      {"name":"Data Usage"},
-      {"name":"Data Tariff"},
-      {"name":"Free Data Usage"},
-      {"name":"Prepaid Packs"},
-      {"name":"Date Activated"},
-      {"name":"Date LastUsed"}
-    ];
+$scope.statementOTAData = [
+  {"name":"Customer Id"},
+  {"name":"Customer Ph No"},
+  {"name":"Customer Email"},
+  {"name":"Customer Gender"},
+  {"name":"Customer City"},
+  {"name":"Customer FirstName"},
+  {"name":"Customer LastName"},
+  {"name":"Customer Birthday"},
+  {"name":"Signedup Date"},
+  {"name":"Last Purchase"},
+  {"name":"Last Visit to Website"},
+  {"name":"Country"},
+  {"name":"Total Amount Spent"},
+  {"name":"Total Number of Tickets Booked"},
+  {"name":"Total International Tickets Booked"},
+  {"name":"Total Domestic Tickets Booked"},
+  {"name":"Total Hotels Booked"},
+  {"name":"Amount Spent on Intl Tickets"},
+  {"name":"Amount Spent on Domestic Tickets"},
+  {"name":"Amoutn Spent on Hotels"},
+  {"name":"Amount Spent on Packages"},
+  {"name":"Downloaded App"}
+];
 
     $scope.skip = function(whom,index){
       $scope.adTabs[index + 1].active = true;
@@ -149,29 +145,29 @@ angular.module( 'engageApp', [
 
   $scope.groups = [
     {
-      title: 'Prepaid Balance < 5 Rupees',
+      title: 'Frequent International Flyers',
       open: true,
-      content: 'Reach all users whose balance is less than 5 Rupees and push ads about recharge'
+      content: 'Users who travel to international destination on regular basis'
     },
     {
-      title: '2GUser_DateLast Used < Aug 1',
+      title: 'Users who only book hotels but not flights on the site',
       open: false,
-      content: 'Since customer is not using 2G for sometime now, give some data pack offer'
+      content: 'Set of users who travel but do not book flights from the site'
     },
     {
-      title: 'PostPaid_ISD Plan ',
+      title: 'Last booked 3 months back',
       open: false,
-      content: 'User is heavy ISD user,  give 3G plans and cheaper ISD plans'
+      content: 'Registered users but havent visited the site for 3 months'
     },
     {
-      title: 'Total Roaming Cost > 5000 Rupees',
+      title: 'Not App user yet',
       open: false,
-      content: 'Provide cheaper options for some frequently travelling countries '
+      content: 'Registered users who have not yet downloaded the Mobile App'
     },
     {
-      title: 'Device User and Not Mobile User ',
+      title: 'Loyal Customers',
       open: false,
-      content: 'User has bought your device but mobile number of other player. Reach him to switch to your brand with better package of device and mobile'
+      content: 'Those who book domestic, international, hotels, packages regularly from the site'
     }
   ];
 
@@ -459,22 +455,22 @@ angular.module( 'engageApp', [
 
     $scope.savedSegments = [
       {
-        name: "Segment 1",
+        name: "Inquire about the packages",
         desc: "",
         reach: "5388453"
       },
       {
-        name: "Segment 2",
+        name: "Booked only once",
         desc: "",
         reach: "2178021"
       },
       {
-        name: "Segment 3",
+        name: "Signed up before 01/01/2012",
         desc: "",
         reach: "3300913"
       },
       {
-        name: "Segment 4",
+        name: "Birthday in next 7 days",
         desc: "",
         reach: "1338100"
       }
