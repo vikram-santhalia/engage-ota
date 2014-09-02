@@ -305,7 +305,7 @@ $scope.selectedRules = {
     {
       values: $scope.facebookTable,
       className: "tableFacebook",
-      id: "areachart",
+      id: "areachartFb",
       headingClass: "headingFacebook",
       heading:"Facebook",
       active: false
@@ -313,7 +313,7 @@ $scope.selectedRules = {
     {
       values: $scope.twitterTable,
       className: "tableTwitter",
-      id: "areachart",
+      id: "areachartTw",
       headingClass: "headingTwitter",
       heading:"Twitter",
       active: false
