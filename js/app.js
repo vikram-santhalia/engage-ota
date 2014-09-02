@@ -439,7 +439,7 @@ $scope.selectedRules = {
     $scope.changeCondition = function(option,index){
     }
 
-    $scope.defaultMetrics = [5588935,4709350,3753420,2010167,1075890,5388453];
+    $scope.defaultMetrics = [1000000,0,0,0,0,0];
 
     $scope.metrics = [
       {
@@ -538,22 +538,22 @@ $scope.selectedRules = {
       {
         name: "Inquire about the packages",
         desc: "",
-        reach: "5388453"
+        reach: "527090"
       },
       {
         name: "Booked only once",
         desc: "",
-        reach: "2178021"
+        reach: "337025"
       },
       {
         name: "Signed up before 01/01/2012",
         desc: "",
-        reach: "3300913"
+        reach: "710181"
       },
       {
         name: "Birthday in next 7 days",
         desc: "",
-        reach: "1338100"
+        reach: "237100"
       }
     ];
 
