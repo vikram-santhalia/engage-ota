@@ -618,6 +618,12 @@ $scope.statementOTAData = [
         growl.addSuccessMessage("Your segment "+$scope.segmentValue.segmentName.toUpperCase()+" has been saved.");
         $scope.segmentValue.segmentName = '';
         $scope.segmentValue.segmentDesc = '';
+        $scope.rules.splice(0,$scope.rules.length);
+        for(var i=0; i<$scope.metrics.length; i++){
+          $scope.metrics[i]['value'] = $scope.defaultMetrics[i];
+          $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
+        }  
+        $scope.tabs[2].active = true;
       } 
     };
 
