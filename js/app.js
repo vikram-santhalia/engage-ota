@@ -431,11 +431,11 @@ $scope.statementOTAData = [
     
 
     $scope.addRule = function(value){
-      var tempData = {
+      /*var tempData = {
         statementOptions : $scope.statementOTAData[0],
         conditionOptions : $scope.ruleConditionData[0]
-      };
-      $scope.ruleData.push(angular.copy(tempData));
+      };*/
+      $scope.ruleData.push(angular.copy($scope.selectedRules));
       id++;
       var rule = { 'id': id, 'operator': 'and'};
       $scope.rules.splice(value+1,0,rule);
@@ -444,7 +444,7 @@ $scope.statementOTAData = [
     $scope.tickRule = function(value){
       var isFirstTick = true;
       for(var i=1; i<$scope.metrics.length; i++){
-          if($scope.metrics[i]['value'] !== "0"){
+          if($scope.metrics[i]['value'] != 0){
             isFirstTick = false;
             break;
           }
@@ -623,6 +623,12 @@ $scope.statementOTAData = [
           $scope.metrics[i]['value'] = $scope.defaultMetrics[i];
           $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
         }  
+        $scope.selectedRules = {
+          statementOptions : $scope.statementOTAData[0],
+          conditionOptions : $scope.ruleConditionData[0]
+        };
+        $scope.ruleData.splice(0,$scope.ruleData.length);
+        $scope.ruleData = [$scope.selectedRules];
         $scope.tabs[2].active = true;
       } 
     };
@@ -634,6 +640,7 @@ $scope.statementOTAData = [
         content: $scope.savedSegments[0].desc
       };
       $scope.groups.unshift(tempGroup);
+      $scope.savedSegments.splice(0,1);
       growl.addSuccessMessage("Your segment has been Engaged.");
       flushRootscopeData();
     };
@@ -675,6 +682,12 @@ $scope.statementOTAData = [
         $scope.metrics[i]['value'] = $scope.defaultMetrics[i];
         $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
       }  
+      $scope.selectedRules = {
+        statementOptions : $scope.statementOTAData[0],
+        conditionOptions : $scope.ruleConditionData[0]
+      };
+      $scope.ruleData.splice(0,$scope.ruleData.length);
+      $scope.ruleData = [$scope.selectedRules];
       $scope.segmentValue.segmentName = '';
       $scope.segmentValue.segmentDesc = '';
       growl.addWarnMessage("Default values have been restored");
