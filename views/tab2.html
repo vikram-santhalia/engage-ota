@@ -27,12 +27,12 @@
       <div class="rule">
         <select class="form-control action"
           data-ng-options="action.name for action in statementOTAData" 
-          data-ng-model="statementOptions"
+          data-ng-model="{{angular.copy(selectedRules.statementOptions)}}"
         > 
       </select>
         <select class="form-control condition"
           data-ng-options="conditions.name for conditions in ruleConditionData" 
-          data-ng-model="conditionOptions"
+          data-ng-model="selectedRules.conditionOptions"
         >
         <input type="text" class="form-control statement" ng-model="ruleOptions"/>
         <div class="buttons">
@@ -59,12 +59,12 @@
       <div class="rule">
         <select class="form-control action"
           data-ng-options="action.name for action in statementOTAData" 
-          data-ng-model="statementOptions"
+          data-ng-model="{{angular.copy(selectedRules.statementOptions)}}"
         > 
       </select>
         <select class="form-control condition"
           data-ng-options="conditions.name for conditions in ruleConditionData" 
-          data-ng-model="conditionOptions"
+          data-ng-model="selectedRules.conditionOptions"
         >     
         </select>
         <input type="text" class="form-control statement" />

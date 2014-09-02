@@ -42,6 +42,7 @@ angular.module( 'engageApp', [
   function($scope, $rootScope, growl,FileUploader) {
 
     $scope.ruleConditionData = [
+      {"name":""},
       {"name":"Not Equal To"},
       {"name":"Equal To"},
       {"name":"Less Than"},
@@ -51,6 +52,7 @@ angular.module( 'engageApp', [
     ];
 
 $scope.statementOTAData = [
+  {"name":""},
   {"name":"Customer Id"},
   {"name":"Customer Ph No"},
   {"name":"Customer Email"},
@@ -74,6 +76,12 @@ $scope.statementOTAData = [
   {"name":"Amount Spent on Packages"},
   {"name":"Downloaded App"}
 ];
+
+$scope.selectedRules = {
+  statementOptions : $scope.statementOTAData[0],
+  conditionOptions : $scope.ruleConditionData[0]
+};
+
 
     $scope.skip = function(whom,index){
       $scope.adTabs[index + 1].active = true;
@@ -150,7 +158,7 @@ $scope.statementOTAData = [
       content: 'Users who travel to international destination on regular basis'
     },
     {
-      title: 'Users who only book hotels but not flights on the site',
+      title: 'Book hotels but not flights',
       open: false,
       content: 'Set of users who travel but do not book flights from the site'
     },
@@ -222,7 +230,7 @@ $scope.statementOTAData = [
       value: '140560'
     },
     {
-      key: 'Career',
+      key: 'Carrier',
       value: '1105'
     },
     {
@@ -230,6 +238,44 @@ $scope.statementOTAData = [
       value: '2113'
     }    
   ];
+
+  $scope.facebookTable = [
+    {
+      icon:'images/icon_6.png',
+      key: 'Impressions',
+      value: '5999391'
+    },
+    {
+      key: 'Clicks',
+      value: '17309'
+    },
+    {
+      key: 'CTR',
+      value: '0.29'
+    },
+    {
+      key: 'Ad Spent',
+      value: '139472'
+    }    
+  ];
+
+  $scope.twitterTable = [
+    {
+      icon:'images/icon_6.png',
+      key: 'Impressions',
+      value: '5999391'
+    },
+    {
+      key: 'Engagement',
+      value: '17309'
+    },
+    {
+      key: 'Engagement Rate',
+      value: '0.29'
+    }   
+  ];
+
+
 
   $scope.telcoTables=[
     {
@@ -254,6 +300,22 @@ $scope.statementOTAData = [
       id: "stackchart",
       headingClass: "headingSms",
       heading:"SMS",
+      active: false
+    },
+    {
+      values: $scope.facebookTable,
+      className: "tableFacebook",
+      id: "areachart",
+      headingClass: "headingFacebook",
+      heading:"Facebook",
+      active: false
+    },
+    {
+      values: $scope.twitterTable,
+      className: "tableTwitter",
+      id: "areachart",
+      headingClass: "headingTwitter",
+      heading:"Twitter",
       active: false
     }
   ];
@@ -350,7 +412,22 @@ $scope.statementOTAData = [
     };
 
     $scope.tickRule = function(value){
-      $scope.decreaseMetrics();
+      var isFirstTick = true;
+      for(var i=1; i<$scope.metrics.length; i++){
+          if($scope.metrics[i]['value'] !== "0"){
+            isFirstTick = false;
+            break;
+          }
+      }
+      if(isFirstTick){
+        for(var i=1; i<$scope.metrics.length; i++){
+          $scope.metrics[i]['value'] = $scope.metricValues[i];
+          $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
+        } 
+      }
+      else{
+        $scope.decreaseMetrics();
+      }
     };
 
     $scope.removeRule = function(value){
@@ -367,35 +444,38 @@ $scope.statementOTAData = [
     $scope.metrics = [
       {
         'name':"Total Users",
-        'value':"5588935",
+        'value':"1000000",
         'type':'success'
       },
       {
-        'name':"Desktop & Mobile",
-        'value':"4709350",
+        'name':"Desktop",
+        'value':"0",
         'type':'primary'
       },
       {
         'name':"Mobile",
-        'value':"3753420",
+        'value':"0",
         'type':'primary'
       },
       {
-        'name':"Desktop",
-        'value':"2010167",
+        'name':"Desktop & Mobile",
+        'value':"0",
         'type':'primary'
       },
       {
         'name':"Facebook",
-        'value':"1075890",
+        'value':"0",
         'type':'primary'
       },
       {
         'name':"Total Reach",
-        'value':"5388453",
+        'value':"0",
         'type':'warning'
       }
     ];
+
+
+    $scope.metricValues = [1000000,830419,517760,301007,211457,950442];
 
 
 
@@ -422,8 +502,9 @@ $scope.statementOTAData = [
     }
 
     $scope.increaseMetrics = function(){
+      var random = getRandomArbitrary(4,9);
       for(var i=1; i<$scope.metrics.length; i++){
-        $scope.metrics[i]['value'] = increaseValue($scope.metrics[i]['value'],5);
+        $scope.metrics[i]['value'] = increaseValue($scope.metrics[i]['value'],random);
         $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
       } 
     }
@@ -437,7 +518,7 @@ $scope.statementOTAData = [
     }
 
     function increaseValue(value,by){
-      return Math.ceil(value + (value * (by/100)));
+      return Math.ceil((value * (by/100)) + parseInt(value));
     }
 
     function getRandomArbitrary(min, max) {
@@ -504,6 +585,8 @@ $scope.statementOTAData = [
         };
         $scope.savedSegments.unshift(segmentToSave);
         growl.addSuccessMessage("Your segment "+$scope.segmentValue.segmentName.toUpperCase()+" has been saved.");
+        $scope.segmentValue.segmentName = '';
+        $scope.segmentValue.segmentDesc = '';
       } 
     };
 
