@@ -72,15 +72,11 @@ $scope.statementOTAData = [
   {"name":"Total Hotels Booked"},
   {"name":"Amount Spent on Intl Tickets"},
   {"name":"Amount Spent on Domestic Tickets"},
-  {"name":"Amoutn Spent on Hotels"},
+  {"name":"Amount Spent on Hotels"},
   {"name":"Amount Spent on Packages"},
   {"name":"Downloaded App"}
 ];
 
-$scope.selectedRules = {
-  statementOptions : $scope.statementOTAData[0],
-  conditionOptions : $scope.ruleConditionData[0]
-};
 
 
     $scope.skip = function(whom,index){
@@ -327,16 +323,36 @@ $scope.selectedRules = {
         $scope.telcoTables[0].active = true;
         $scope.telcoTables[1].active = false;
         $scope.telcoTables[2].active = false;
+        $scope.telcoTables[3].active = false;
+        $scope.telcoTables[4].active = false;
       }
       else if(index === 1){
         $scope.telcoTables[1].active = true;
         $scope.telcoTables[0].active = false;
         $scope.telcoTables[2].active = false;
+        $scope.telcoTables[3].active = false;
+        $scope.telcoTables[4].active = false;
       }
       else if(index === 2){
         $scope.telcoTables[2].active = true;
         $scope.telcoTables[0].active = false;
         $scope.telcoTables[1].active = false;
+        $scope.telcoTables[3].active = false;
+        $scope.telcoTables[4].active = false;
+      }
+      else if(index === 3){
+        $scope.telcoTables[2].active = false;
+        $scope.telcoTables[0].active = false;
+        $scope.telcoTables[1].active = false;
+        $scope.telcoTables[3].active = true;
+        $scope.telcoTables[4].active = false;
+      }
+      else if(index === 4){
+        $scope.telcoTables[2].active = false;
+        $scope.telcoTables[0].active = false;
+        $scope.telcoTables[1].active = false;
+        $scope.telcoTables[3].active = false;
+        $scope.telcoTables[4].active = true;
       }
     }
   }
@@ -404,8 +420,22 @@ $scope.selectedRules = {
     $scope.options = [{ name: "AND", id: 1 }, { name: "OR", id: 2 }];
     $scope.selectedOption = $scope.options[0];
   
+    
+    $scope.selectedRules = {
+      statementOptions : $scope.statementOTAData[0],
+      conditionOptions : $scope.ruleConditionData[0]
+    };
+
+    $scope.ruleData = [$scope.selectedRules];
+
+    
 
     $scope.addRule = function(value){
+      var tempData = {
+        statementOptions : $scope.statementOTAData[0],
+        conditionOptions : $scope.ruleConditionData[0]
+      };
+      $scope.ruleData.push(angular.copy(tempData));
       id++;
       var rule = { 'id': id, 'operator': 'and'};
       $scope.rules.splice(value+1,0,rule);
@@ -433,6 +463,7 @@ $scope.selectedRules = {
     $scope.removeRule = function(value){
       $scope.rules[value]['removed'] = true;
       $scope.rules.splice(value,1);
+      $scope.ruleData.splice(value,1);
       $scope.increaseMetrics();
     };
 
@@ -638,6 +669,8 @@ $scope.selectedRules = {
         $scope.metrics[i]['value'] = $scope.defaultMetrics[i];
         $scope.metrics[i]['formattedValue'] = numberWithCommas($scope.metrics[i]['value']);
       }  
+      $scope.segmentValue.segmentName = '';
+      $scope.segmentValue.segmentDesc = '';
       growl.addWarnMessage("Default values have been restored");
     };
 
