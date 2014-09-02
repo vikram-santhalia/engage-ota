@@ -27,7 +27,7 @@
       <div class="rule">
         <select class="form-control action"
           data-ng-options="action.name for action in statementOTAData" 
-          data-ng-model="{{angular.copy(selectedRules.statementOptions)}}"
+          data-ng-model="selectedRules.statementOptions"
         > 
       </select>
         <select class="form-control condition"
@@ -59,7 +59,7 @@
       <div class="rule">
         <select class="form-control action"
           data-ng-options="action.name for action in statementOTAData" 
-          data-ng-model="{{angular.copy(selectedRules.statementOptions)}}"
+          data-ng-model="selectedRules.statementOptions"
         > 
       </select>
         <select class="form-control condition"
