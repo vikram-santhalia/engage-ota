@@ -49,21 +49,21 @@ $scope.groups = [
       {
         name: "Eligible for Personal Loans",
         desc: "",
-        reach: "3390172"
+        reach: "527090"
       },
       {
         name: "Used your debit card for Offline Shopping",
         desc: "",
-        reach: "2178021"
+        reach: "337025"
       },
       {
         name: "Called Customer Care about service",
         desc: "",
-        reach: "2300913"
+        reach: "710181"
       },
       {
         name: "Still receiving paper statements (ads about saving paper and getting e-statement)",
         desc: "",
-        reach: "1179101"
+        reach: "237100"
       }
     ];

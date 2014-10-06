@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-sm-9">
    <div class="panel panel-default mypanel">
     <div class="panel-body rule-panel">
       <div class="row myrow">
@@ -26,7 +26,7 @@
     <div class="row myrow">
       <div class="rule">
         <select class="form-control action"
-          data-ng-options="action.name for action in statementOTAData" 
+          data-ng-options="action.name for action in statementBankingData" 
           data-ng-model="selectedRules.statementOptions"
         > 
       </select>
@@ -58,7 +58,7 @@
       </select>
       <div class="rule">
         <select class="form-control action"
-          data-ng-options="action.name for action in statementOTAData" 
+          data-ng-options="action.name for action in statementBankingData" 
           data-ng-model="ruleData[$index+1].statementOptions"
         > 
       </select>
@@ -97,7 +97,7 @@
 </div>
 
 
-  <div class="col-md-3">
+  <div class="col-sm-3">
   
   <div class="panel panel-default results-panel">
     <div class="panel-heading">
